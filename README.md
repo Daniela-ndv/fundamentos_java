@@ -1,7 +1,6 @@
 ## Fundamentos Java
 
-Exercícios de conceitos e fundamentos de Java.
-
+Conceitos explorados: 
 * Classes 
 * Atributos
 * Métodos
@@ -12,3 +11,6 @@ Exercícios de conceitos e fundamentos de Java.
 * Java API Specification
 * JavaBean e encapsulamento
 * JavaDoc
+
+#### Exercício: 
+Criação de uma pacote abstraindo um sistema bancário. 
