@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "VerificaConta",
+            "request": "launch",
+            "mainClass": "banco.VerificaConta",
+            "projectName": "fundamentos_java_d590c423"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
