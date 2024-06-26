@@ -1,9 +1,7 @@
-## Fundamentos Java
+# Fundamentos Java
 
-Conceitos explorados: 
-* Classes 
-* Atributos
-* Métodos
+## Conceitos explorados: 
+* Classes, Métodos e Atributos 
 * Sobrecarga de Métodos
 * Contrutores
 * Objetos
@@ -11,6 +9,10 @@ Conceitos explorados:
 * Java API Specification
 * JavaBean e encapsulamento
 * JavaDoc
+* Herança
+* Sobrescrita de métodos (polimorfismo)
+* Estruturas de Repetição
+* Arrays, Strings e Coleções 
 
-#### Exercício: 
-Criação de uma pacote abstraindo um sistema bancário. 
+### Exercício: 
+* Abstração de um sistema bancário (pacote banco). 

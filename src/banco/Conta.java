@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 public class Conta implements Serializable {
 
-    // private static final long serialversionUID = 1L; //Controle de versão
+    // private static final long serialversionUID = 1L; //Controle de versão de uma serializável
 
     /*
      * Atributos que representam agência, número e saldo da conta
