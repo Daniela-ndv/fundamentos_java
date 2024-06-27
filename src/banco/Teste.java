@@ -1,9 +1,9 @@
 package banco;
 
 public class Teste {
-    public static void main(String[] args) {
-        
-        /*
+	public static void main(String[] args) {
+
+		/*
         //Conta corrente
         Conta cc = new Conta();
 
@@ -31,47 +31,49 @@ public class Teste {
 
         poupanca.sacar(50);
         System.out.println("Saque de R$50,00 realizado. \nSaldo atual: R$"+ poupanca.getSaldo()+ "\n");
-        */
+		 */
 
 
-        //ContaCorrente cc = new ContaCorrente();
-        // // Objetos da superclasse
-        // cc.setAgencia(222);
-        // cc.setNumero(3);
-        // // Objetos da subclasse
-        // cc.setTipo("PF");
-        // cc.setChequeEspecial(1000);
+		//ContaCorrente cc = new ContaCorrente();
+		// // Objetos da superclasse
+		// cc.setAgencia(222);
+		// cc.setNumero(3);
+		// // Objetos da subclasse
+		// cc.setTipo("PF");
+		// cc.setChequeEspecial(1000);
 
 
-        /*
+		/*
         Conta conta = new Conta(); // Objeto da superclasse
         Conta cc = new ContaCorrente(); // Obsejo da subclasse, e variáveis da superclasse
 
         // Casting: conversão de objetos ou tipos primitivos de um tipo para outro tipo dentro da hierarquia de classe
         ContaCorrente c1 = (ContaCorrente) cc; // Down Castins
-        
+
         // Verifica se a variável é uma instância do objeto esperado
         if (conta instanceof ContaCorrente) {
             ContaCorrente c2 = (ContaCorrente) conta;
         }
-        */
+		 */
 
 
-        Conta conta1 = new Conta();
-        conta1.depositar(1000);
-        conta1.sacar(100);
+		Conta conta1 = new Conta();
+		conta1.depositar(1000);
+		conta1.sacar(100);
 
-        ContaCorrente conta2 = new ContaCorrente();
-        conta2.depositar(1000);
-        conta2.sacar(100);
+		ContaCorrente conta2 = new ContaCorrente();
+		conta2.depositar(1000);
+		conta2.sacar(100);
 
-        Conta conta3 = new ContaCorrente();
-        conta3.depositar(1000);
-        conta3.sacar(100);
-        
-        System.out.println("Conta1: " + conta1.getSaldo());  // Utiliza o método da superclasse      
-        System.out.println("Conta2: " + conta2.getSaldo());        
-        System.out.println("Conta3: " + conta3.getSaldo());        
+		Conta conta3 = new ContaCorrente();
+		conta3.depositar(1000);
+		conta3.sacar(100);
 
-    }
+		System.out.println("Conta1: " + conta1.getSaldo());  // Utiliza o método da superclasse      
+		System.out.println("Conta2: " + conta2.getSaldo());        
+		System.out.println("Conta3: " + conta3.getSaldo());        
+
+
+
+	}
 }

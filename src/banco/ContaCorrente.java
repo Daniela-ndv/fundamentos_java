@@ -2,18 +2,16 @@ package banco;
 
 public class ContaCorrente extends Conta{
     
-    private String tipo;
-    private double chequeEspecial;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private double chequeEspecial;
 
     /*
-     * Métodos Getters e Setters dos atributos Tipo e Cheque Especial
+     * Método Get e Set do atributo chequeEspecial
      */
-    public String getTipo() {
-        return tipo;
-    }
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
     public double getChequeEspecial() {
         return chequeEspecial;
     }

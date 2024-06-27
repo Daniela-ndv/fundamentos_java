@@ -11,13 +11,17 @@ import java.io.Serializable;
 
 public class Conta implements Serializable {
 
-    // private static final long serialversionUID = 1L; //Controle de versão de uma serializável
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L; //Controle de versão de uma serializável
 
     /*
-     * Atributos que representam agência, número e saldo da conta
+     * Atributos que representam agência, número, cliente e saldo da conta
      */
     private int agencia;
     private int numero;
+    private int cliente; 
     private double saldo;
 
     /*
@@ -30,10 +34,11 @@ public class Conta implements Serializable {
     /*
      * Construtor de classe com parâmetros
      */
-    public Conta(int agencia, int numero, double saldo){
+    public Conta(int agencia, int numero, double saldo, int cliente){
         this.agencia = agencia;
         this.numero = numero;
         this.saldo = saldo;
+        this.cliente = cliente; 
     }
 
     /*
@@ -58,8 +63,15 @@ public class Conta implements Serializable {
     public double getSaldo() {
         return this.saldo; 
     }
+    
+    public int getCliente() {
+		return cliente;
+	}
 
-    // Métodos
+	public void setCliente(int cliente) {
+		this.cliente = cliente;  
+	}
+
 
     /*
      * Acrescenta valor ao saldo da conta
