@@ -9,12 +9,13 @@ import java.io.Serializable;
  * @version 1.0
  */
 
+// Classe serializável: objetos gerados a partir da classe terão as informações serializáveis, transformadas em pacotes de bits para trafegar na rede
 public class Conta implements Serializable {
 
     /**
-	 * 
+	 * Controle de versão de uma serializável
 	 */
-	private static final long serialVersionUID = 1L; //Controle de versão de uma serializável
+	private static final long serialVersionUID = 1L; 
 
     /*
      * Atributos que representam agência, número, cliente e saldo da conta
@@ -23,6 +24,8 @@ public class Conta implements Serializable {
     private int numero;
     private int cliente; 
     private double saldo;
+    public int contadorDepositar;
+    public int contadotSacar;
 
     /*
      * Construtor padrão (algumas APIs Java esperam o construtor padrão)
@@ -68,17 +71,13 @@ public class Conta implements Serializable {
 		return cliente;
 	}
 
-	public void setCliente(int cliente) {
-		this.cliente = cliente;  
-	}
-
-
     /*
      * Acrescenta valor ao saldo da conta
      * @param valor que será depositado
      */
     public void depositar(double valor){
         this.saldo += valor; 
+        contadorDepositar++;
     }
 
     /*
@@ -88,6 +87,7 @@ public class Conta implements Serializable {
      */
     public void sacar(double valor){
         this.saldo -= valor;
+        contadotSacar++;
     }
 
     

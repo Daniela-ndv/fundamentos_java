@@ -1,10 +1,11 @@
 package banco;
 
+/**
+ * Classe que abstrai uma Conta Corrente, subclasse de Conta
+ * @see Conta
+ */
 public class ContaCorrente extends Conta{
     
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private double chequeEspecial;

@@ -3,23 +3,25 @@ package banco;
 import java.io.Serializable;
 
 /**
- * Classe que abstrai ums pessoa 
- * Padrão JavaBean
- * @author Daniela Dalla Vecchia
- * @version 1.0
+ * Classe que abstrai um usuário da conta
  */
 
-/*
- * Classe serializável: objetos gerados a partir da classe terão as informações serializáveis, transformadas em pacotes de bits para trafegar na rede
- */
+//Classe serializável: objetos gerados a partir da classe terão as informações serializáveis, transformadas em pacotes de bits para trafegar na rede
 public class Pessoa implements Serializable{
 
-    // private static final long serialversionUID = 1L; //Identificação dos objetos de modo a evitar conflito do bite no ambiente de memória
-
-    private String nome; //Atributo encapsulado 
+    /**
+	 * Para identificação dos objetos de modo a evitar conflito no ambiente de memória
+	 * Controle de versão
+	 */
+	private static final long serialVersionUID = -403695969897229171L;
+	
+	private String nome; 
+    private String telefone;
+    private String cidade;
+    private String endereco; 
 
     /*
-     * Métodos Get e Set do atributo nome
+     * Métodos Get e Set dos atributos
      */
     public String getNome() {
         return nome;
@@ -28,5 +30,31 @@ public class Pessoa implements Serializable{
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+    
+    
 
 }

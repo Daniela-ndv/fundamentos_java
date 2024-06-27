@@ -72,7 +72,10 @@ public class Teste {
 		System.out.println("Conta1: " + conta1.getSaldo());  // Utiliza o método da superclasse      
 		System.out.println("Conta2: " + conta2.getSaldo());        
 		System.out.println("Conta3: " + conta3.getSaldo());        
-
+		
+		Movimento mov = new Movimento();
+		
+		mov.consultar();
 
 
 	}
