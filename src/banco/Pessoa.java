@@ -19,6 +19,7 @@ public class Pessoa implements Serializable{
     private String telefone;
     private String cidade;
     private String endereco; 
+    private int numero; 
 
     /*
      * Métodos Get e Set dos atributos
@@ -27,7 +28,7 @@ public class Pessoa implements Serializable{
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(String nome) {                                                   
         this.nome = nome;
     }
 
@@ -54,7 +55,14 @@ public class Pessoa implements Serializable{
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-    
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
     
 
 }

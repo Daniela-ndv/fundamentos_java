@@ -1,5 +1,8 @@
 package banco;
 
+/*
+ * Classe que lista o histórico de transações
+ */
 public class Movimento{
 	
 	Conta conta1 = new Conta();
@@ -7,8 +10,8 @@ public class Movimento{
 	private int tipo;
 	private String data;
 	private String hora;
-	private int conta;
 	private double valor;
+	private int conta;
 	
 	public int getTipo() {
 		return tipo;

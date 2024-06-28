@@ -64,7 +64,11 @@ public class Conta implements Serializable {
     }
     
     public double getSaldo() {
-        return this.saldo; 
+        return saldo; 
+    }
+    
+    public void setSaldo(double saldo) {
+    	this.saldo = saldo;
     }
     
     public int getCliente() {

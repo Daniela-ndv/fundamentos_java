@@ -12,7 +12,9 @@
 * Herança
 * Sobrescrita de métodos (polimorfismo)
 * Estruturas de Repetição
-* Arrays, Strings e Coleções 
+* Classes abstratas
+* Exceções (try catch, throws)
+* Acesso a arquivos
 
 ### Exercício: 
 * Abstração de um sistema bancário (pacote banco). 
