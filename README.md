@@ -10,11 +10,10 @@
 * JavaBean e encapsulamento
 * JavaDoc
 * Herança
-* Sobrescrita de métodos (polimorfismo)
+* Sobrescrita de métodos 
 * Estruturas de Repetição
 * Classes abstratas
 * Exceções (try catch, throws)
 * Acesso a arquivos
-
-### Exercício: 
-* Abstração de um sistema bancário (pacote banco). 
+* Polimorfismo
+* Interface
