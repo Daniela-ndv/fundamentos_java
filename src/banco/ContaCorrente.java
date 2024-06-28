@@ -1,5 +1,7 @@
 package banco;
 
+import utilitarios.Utils;
+
 /**
  * Classe que abstrai uma Conta Corrente, subclasse de Conta
  * @see Conta
@@ -35,5 +37,17 @@ public class ContaCorrente extends Conta{
         valor += 10;
         super.sacar(valor); 
     }
+    
+    /*
+     * Método toString (formatar)
+     */
+    public String toString() {
+		return "\nNúmero da conta: " + this.getAgencia() + 
+				"\nAgência: " + this.getAgencia() +
+				"\nCliente:" + this.getCliente() +  
+				"\nCheque especial: " + this.getChequeEspecial() +
+				"\nSaldo:" + Utils.doubleToString(this.getSaldo()) +
+				"\n"; 
+	}
 
 }

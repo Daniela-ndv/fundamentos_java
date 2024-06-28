@@ -1,9 +1,9 @@
 package banco;
 
 public class Teste {
+	/*
 	public static void main(String[] args) {
-
-		/*
+			
         //Conta corrente
         Conta cc = new Conta();
 
@@ -31,7 +31,7 @@ public class Teste {
 
         poupanca.sacar(50);
         System.out.println("Saque de R$50,00 realizado. \nSaldo atual: R$"+ poupanca.getSaldo()+ "\n");
-		 */
+		 
 
 
 		//ContaCorrente cc = new ContaCorrente();
@@ -43,7 +43,7 @@ public class Teste {
 		// cc.setChequeEspecial(1000);
 
 
-		/*
+		
         Conta conta = new Conta(); // Objeto da superclasse
         Conta cc = new ContaCorrente(); // Obsejo da subclasse, e variáveis da superclasse
 
@@ -54,7 +54,7 @@ public class Teste {
         if (conta instanceof ContaCorrente) {
             ContaCorrente c2 = (ContaCorrente) conta;
         }
-		 */
+		 
 
 
 		Conta conta1 = new Conta();
@@ -77,6 +77,5 @@ public class Teste {
 		
 		mov.consultar();
 
-
-	}
+	} */
 }

@@ -51,8 +51,6 @@ public class Movimento{
 	public void consultar() {
 		conta1.depositar(1000);
 		conta1.sacar(100); 
-		System.out.println("Quantidade de depósitos: " + conta1.contadorDepositar);
-		System.out.println("Quantidade de saques: " + conta1.contadotSacar);
 	}	
 	
 	

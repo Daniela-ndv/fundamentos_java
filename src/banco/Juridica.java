@@ -17,5 +17,13 @@ public class Juridica extends Pessoa{
 	public void setCnpj(int cnpj) {
 		this.cnpj = cnpj;
 	}
+	
+	public String toString() {
+		return "\nID: " + this.getId() + 
+				"\nNome: " + this.getNome() +
+				"\nCPF:" + this.getCnpj() + 
+				"\nTelefone: " + this.getTelefone() +
+				"\nEndereço: " + this.getEndereco();
+	}
 
 }

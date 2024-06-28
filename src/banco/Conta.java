@@ -1,6 +1,7 @@
 package banco;
 
 import java.io.Serializable;
+import java.util.Scanner;
 
 /**
  * Classe que abstrai uma conta bancária
@@ -17,15 +18,11 @@ public class Conta implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L; 
 
-    /*
-     * Atributos que representam agência, número, cliente e saldo da conta
-     */
     private int agencia;
     private int numero;
     private int cliente; 
-    private double saldo;
-    public int contadorDepositar;
-    public int contadotSacar;
+    private double saldo = 0.0;
+    private static int contadorContas = 1; 
 
     /*
      * Construtor padrão (algumas APIs Java esperam o construtor padrão)
@@ -74,26 +71,52 @@ public class Conta implements Serializable {
     public int getCliente() {
 		return cliente;
 	}
+    
+    public void setCliente(int cliente) {
+		this.cliente = cliente;
+	}
 
-    /*
+	/*
      * Acrescenta valor ao saldo da conta
      * @param valor que será depositado
      */
     public void depositar(double valor){
-        this.saldo += valor; 
-        contadorDepositar++;
+    	if (valor > 0) {
+    		setSaldo(getSaldo() + valor);
+    		System.out.println("Depósito realizado com sucesso!");
+    	} else {
+    		System.out.println("A Operação não foi realizada!");
+    	}
+    	
     }
 
     /*
      * Retira um valor do saldo da conta
      * @param valor que será retirado
-     * @see depositar
      */
     public void sacar(double valor){
-        this.saldo -= valor;
-        contadotSacar++;
+    	if(valor > 0 && valor <= this.getSaldo()) {
+    		setSaldo(getSaldo() - valor);
+    		System.out.println("Saque realizado com sucesso!");
+    	} else {
+    		System.out.println("A Operação não foi realizada!");
+    	}
     }
-
+    
+    /*
+     * Transfere um valor do saldo da conta
+     */
+    public void transferir(Conta contaDeposito, double valor) {
+    	if(valor > 0 && valor <= this.getSaldo()) {
+    		
+    		setSaldo(getSaldo() - valor);
+    		contaDeposito.setSaldo(contaDeposito.getSaldo() + valor); 
+    		
+    		System.out.println("Transferência realizada com sucesso!");
+    	} else {
+    		System.out.println("A Operação não foi realizada!");
+    	}
+    }
     
 }
 

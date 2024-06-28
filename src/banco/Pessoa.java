@@ -13,16 +13,29 @@ public class Pessoa implements Serializable{
 	 * Para identificação dos objetos de modo a evitar conflito no ambiente de memória
 	 * Controle de versão
 	 */
-	private static final long serialVersionUID = -403695969897229171L;
+	private static final long serialVersionUID = 1L;
+	
+	private static int contadorPessoa = 1; 
 	
 	private String nome; 
     private String telefone;
-    private String cidade;
     private String endereco; 
-    private int numero; 
+    private int id; 
+    
+    public Pessoa() {
+		
+	}
 
-    /*
-     * Métodos Get e Set dos atributos
+	public Pessoa(String nome, String telefone, String endereco, int id) {
+		this.nome = nome;
+		this.telefone = telefone;
+		this.endereco = endereco;
+		this.id = id;
+		contadorPessoa += 1; 
+	}
+
+	/*
+     * Métodos Getters e Setters dos atributos
      */
     public String getNome() {
         return nome;
@@ -40,14 +53,6 @@ public class Pessoa implements Serializable{
 		this.telefone = telefone;
 	}
 
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
 	public String getEndereco() {
 		return endereco;
 	}
@@ -56,13 +61,13 @@ public class Pessoa implements Serializable{
 		this.endereco = endereco;
 	}
 
-	public int getNumero() {
-		return numero;
+	public int getId() {
+		return id;
 	}
 
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setId(int id) {
+		this.id = id;
 	}
-    
+	
 
 }
