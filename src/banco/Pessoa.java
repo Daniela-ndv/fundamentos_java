@@ -2,6 +2,8 @@ package banco;
 
 import java.io.Serializable;
 
+import utilitarios.Utils;
+
 /**
  * Classe que abstrai um usuário da conta
  */
@@ -17,57 +19,48 @@ public class Pessoa implements Serializable{
 	
 	private static int contadorPessoa = 1; 
 	
-	private String nome; 
-    private String telefone;
-    private String endereco; 
-    private int id; 
+	private int idPessoa; 
+    private String nome; 
+	private String email;
     
-    public Pessoa() {
-		
-	}
+	public Pessoa() { }
 
-	public Pessoa(String nome, String telefone, String endereco, int id) {
+	/*
+	 * Método construtor
+	 */
+	public Pessoa(int idPessoa, String nome, String cpf, String email) {
+		this.idPessoa = idPessoa;
 		this.nome = nome;
-		this.telefone = telefone;
-		this.endereco = endereco;
-		this.id = id;
-		contadorPessoa += 1; 
+		this.email = email;
+		Pessoa.contadorPessoa += 1;
 	}
 
 	/*
      * Métodos Getters e Setters dos atributos
      */
-    public String getNome() {
+	
+    public int getIdPessoa() {
+		return idPessoa;
+	}
+    
+    public void setIdPessoa(int idPessoa) {
+    	this.idPessoa = idPessoa;
+    }
+
+	public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {                                                   
+	public void setNome(String nome) {                                                   
         this.nome = nome;
     }
 
-	public String getTelefone() {
-		return telefone;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
-
 }

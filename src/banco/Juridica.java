@@ -19,11 +19,10 @@ public class Juridica extends Pessoa{
 	}
 	
 	public String toString() {
-		return "\nID: " + this.getId() + 
-				"\nNome: " + this.getNome() +
-				"\nCPF:" + this.getCnpj() + 
-				"\nTelefone: " + this.getTelefone() +
-				"\nEndereço: " + this.getEndereco();
-	}
-
+        return  "\nID: " + this.getIdPessoa() +
+        		"\nName: " + this.getNome() +
+                "\nCNPJ: " + this.getCnpj() +
+                "\nEmail: " + this.getEmail(); 
+    }
 }
+

@@ -17,3 +17,6 @@
 * Acesso a arquivos
 * Polimorfismo
 * Interface
+
+### Exercício realizado: 
+* Abstração de uma conta bancária. 

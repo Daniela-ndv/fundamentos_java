@@ -23,14 +23,12 @@ public class Fisica extends Pessoa {
 	public void setRg(int rg) {
 		this.rg = rg;
 	}
-
+	
 	public String toString() {
-		return "\nID: " + this.getId() + 
-				"\nNome: " + this.getNome() +
-				"\nCPF:" + this.getCpf() + 
-				"\nRG:" + this.getRg() + 
-				"\nTelefone: " + this.getTelefone() +
-				"\nEndereço: " + this.getEndereco();
-		
-	}
+        return  "\nID: " + this.getIdPessoa() +
+        		"\nName: " + this.getNome() +
+                "\nCPF: " + this.getCpf() +
+                "\nRG: " + this.getRg() +
+                "\nEmail: " + this.getEmail(); 
+    }
 }

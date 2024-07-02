@@ -17,49 +17,48 @@ public class Conta implements Serializable {
 	 * Controle de versão de uma serializável
 	 */
 	private static final long serialVersionUID = 1L; 
-
-    private int agencia;
-    private int numero;
-    private int cliente; 
-    private double saldo = 0.0;
-    private static int contadorContas = 1; 
+	
+	private static int contadorContas = 1; 
+    private Pessoa pessoa; 
+    private int numeroConta;
+	private int agencia; 
+    private Double saldo = 0.0;
 
     /*
      * Construtor padrão (algumas APIs Java esperam o construtor padrão)
      */
-    public Conta(){
-
-    }
+    public Conta(){ }
 
     /*
      * Construtor de classe com parâmetros
      */
-    public Conta(int agencia, int numero, double saldo, int cliente){
-        this.agencia = agencia;
-        this.numero = numero;
-        this.saldo = saldo;
-        this.cliente = cliente; 
+    public Conta(Pessoa pessoa, int numeroConta, int agencia){
+    	this.numeroConta = numeroConta;
+		this.agencia = agencia;
+        this.pessoa = pessoa;
+        this.updateSaldo(); 
+        Conta.contadorContas += 1;
     }
 
     /*
      * Métodos Getters e Setters
-     */
-    public int getAgencia() {
-        return agencia;
-    }
+     */    
+    public int getNumeroConta() {
+		return numeroConta;
+	}
 
-    public void setAgencia(int agencia) {
-        this.agencia = agencia;
-    }
+	public void setNumeroConta(int numeroConta) {
+		this.numeroConta = numeroConta;
+	}
 
-    public int getNumero() {
-        return numero;
-    }
+	public int getAgencia() {
+		return agencia;
+	}
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-    
+	public void setAgencia(int agencia) {
+		this.agencia = agencia;
+	}
+	
     public double getSaldo() {
         return saldo; 
     }
@@ -68,28 +67,31 @@ public class Conta implements Serializable {
     	this.saldo = saldo;
     }
     
-    public int getCliente() {
-		return cliente;
+    public Pessoa getPessoa() {
+		return pessoa;
 	}
     
-    public void setCliente(int cliente) {
-		this.cliente = cliente;
+    public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
-
-	/*
+    
+    private void updateSaldo() {
+        this.saldo = this.getSaldo();
+    }
+    
+    /*
      * Acrescenta valor ao saldo da conta
      * @param valor que será depositado
      */
-    public void depositar(double valor){
+    public void depositar(double valor){   	
     	if (valor > 0) {
     		setSaldo(getSaldo() + valor);
     		System.out.println("Depósito realizado com sucesso!");
     	} else {
     		System.out.println("A Operação não foi realizada!");
-    	}
-    	
+    	}	
     }
-
+    
     /*
      * Retira um valor do saldo da conta
      * @param valor que será retirado
@@ -102,7 +104,7 @@ public class Conta implements Serializable {
     		System.out.println("A Operação não foi realizada!");
     	}
     }
-    
+	
     /*
      * Transfere um valor do saldo da conta
      */
@@ -117,6 +119,8 @@ public class Conta implements Serializable {
     		System.out.println("A Operação não foi realizada!");
     	}
     }
+    
+    
     
 }
 
