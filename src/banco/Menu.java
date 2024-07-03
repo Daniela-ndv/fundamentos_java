@@ -7,10 +7,14 @@ public class Menu {
 	
 	static Scanner scanner = new Scanner(System.in); 
 	static ArrayList<Conta> contas; 
+	static ArrayList<Movimento> movimentos; 
 	
 	public static void main(String[] args) {
 		contas = new ArrayList<Conta>();
-		 operacoes();
+		
+		movimentos = new ArrayList<Movimento>();
+		
+		operacoes();
 	}
 	
 	public static void operacoes() {
@@ -174,6 +178,16 @@ public class Menu {
     		System.out.println("Valor para depositar: ");
     		Double valorDeposito = scanner.nextDouble();
     		conta.depositar(valorDeposito);
+    		
+    		int tipo = 1;
+    		String data = "03-07-2004";
+    		String hora = "16:26";
+    		Double valor = valorDeposito; 
+    		
+    		Movimento movimento = new Movimento(tipo, data, hora, valor, conta);    		
+    		movimentos.add(movimento); 
+    		
+    		
     	} else {
     		System.out.println("Conta não encontrada!");
     	}
@@ -192,6 +206,15 @@ public class Menu {
     		System.out.println("Valor para sacar: ");
     		Double valorSaque = scanner.nextDouble();
     		conta.sacar(valorSaque);
+    		
+    		int tipo = 2;
+    		String data = "03-07-2004";
+    		String hora = "16:26";
+    		Double valor = valorSaque; 
+    		
+    		Movimento movimento = new Movimento(tipo, data, hora, valor, conta);    		
+    		movimentos.add(movimento); 
+    		
     	} else {
     		System.out.println("Conta não encontrada!");
     	}
@@ -217,6 +240,13 @@ public class Menu {
 				Double valor = scanner.nextDouble();
 				
 				contaRemetente.transferir(contaDestinatario, valor);
+				
+				int tipo = 3;
+	    		String data = "03-07-2004";
+	    		String hora = "16:26";
+	    		
+	    		Movimento movimento = new Movimento(tipo, data, hora, valor, contaRemetente);    		
+	    		movimentos.add(movimento); 
 			}
 		}
 		
@@ -224,21 +254,61 @@ public class Menu {
 	}
 	
 	public static void listarContas() {
-		if(contas.size() > 0) {
-			for(Conta conta: contas) {
-				System.out.println("\nNúmero conta: " + conta.getNumeroConta());
-				System.out.println("Titular: " + conta.getPessoa().getNome());
-				System.out.println("Saldo: " + conta.getSaldo());
+			
+		if (contas.size() > 0) {
+			for (Conta conta : contas) {
+				
+				String valorFormatado = String.format("\nSaldo: R$%.3f", conta.getSaldo());
+				
+				System.out.println("\nNúmero conta: " + conta.getNumeroConta() + 
+						"\nTitular: " + conta.getPessoa().getNome() + 
+						valorFormatado);
 			}
 		} else {
 			System.out.println("Não há contas cadastradas!");
 		}
-		
+
 		operacoes();
 	}
 	
 	public static void visualizarExtrato() {
 		
+		System.out.println("\nNúmero da conta: ");
+		int numero = scanner.nextInt();
+				
+		if (movimentos.size() > 0) {
+			for (Movimento movimento: movimentos) {
+				
+				String tipoMovimento = ""; 
+				if(movimento.getTipo() == 1) { 
+					tipoMovimento = "Depósito";
+				} else if(movimento.getTipo() == 2) {
+					tipoMovimento = "Saque";
+				} else if(movimento.getTipo() == 3) {
+					tipoMovimento = "Transferir";
+				}
+				
+				if (numero == movimento.getConta().getNumeroConta()) {
+					String valorFormatado = String.format("\nValor: R$%.3f", movimento.getValor());
+					
+					System.out.println("\nTipo: " + tipoMovimento + 
+							"\nConta: " + movimento.getConta().getNumeroConta() + 
+		    				"\nData: " + movimento.getData() + 
+		    				"\tHora: " + movimento.getHora() + 
+		    				valorFormatado);
+				} else {
+					; 
+				}
+				
+			}
+		} else {
+			System.out.println("Não há movimentos!");
+		}
+		
+		operacoes();
 	}
 	
 }
+
+
+
