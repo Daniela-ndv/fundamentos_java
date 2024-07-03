@@ -1,7 +1,11 @@
 package banco;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Date;
 
 public class Menu {
 	
@@ -143,7 +147,7 @@ public class Menu {
 //			System.out.println("Número conta: " + conta.getNumeroConta());
 			
 		} else if(opcaoPessoa == 3) {
-			System.out.println("\nRetornando ao menu...\n");
+			System.out.println("\nRetornando ao menu...");
 			operacoes();
 			
 		} else {
@@ -180,8 +184,8 @@ public class Menu {
     		conta.depositar(valorDeposito);
     		
     		int tipo = 1;
-    		String data = "03-07-2004";
-    		String hora = "16:26";
+    		String data = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    		String hora = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
     		Double valor = valorDeposito; 
     		
     		Movimento movimento = new Movimento(tipo, data, hora, valor, conta);    		
@@ -208,8 +212,8 @@ public class Menu {
     		conta.sacar(valorSaque);
     		
     		int tipo = 2;
-    		String data = "03-07-2004";
-    		String hora = "16:26";
+    		String data = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    		String hora = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
     		Double valor = valorSaque; 
     		
     		Movimento movimento = new Movimento(tipo, data, hora, valor, conta);    		
@@ -242,8 +246,8 @@ public class Menu {
 				contaRemetente.transferir(contaDestinatario, valor);
 				
 				int tipo = 3;
-	    		String data = "03-07-2004";
-	    		String hora = "16:26";
+				String data = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	    		String hora = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 	    		
 	    		Movimento movimento = new Movimento(tipo, data, hora, valor, contaRemetente);    		
 	    		movimentos.add(movimento); 
@@ -291,6 +295,7 @@ public class Menu {
 				if (numero == movimento.getConta().getNumeroConta()) {
 					String valorFormatado = String.format("\nValor: R$%.3f", movimento.getValor());
 					
+					System.out.println("===================================");
 					System.out.println("\nTipo: " + tipoMovimento + 
 							"\nConta: " + movimento.getConta().getNumeroConta() + 
 		    				"\nData: " + movimento.getData() + 
@@ -299,7 +304,6 @@ public class Menu {
 				} else {
 					; 
 				}
-				
 			}
 		} else {
 			System.out.println("Não há movimentos!");
