@@ -12,10 +12,10 @@ import utilitarios.Utils;
 public class Pessoa implements Serializable{
 
     /**
-	 * Para identificação dos objetos de modo a evitar conflito no ambiente de memória
+	 * serialVersionUID: para identificação dos objetos de modo a evitar conflito no ambiente de memória
 	 * Controle de versão
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; 
 	
 	private static int contadorPessoa = 1; 
 	
@@ -28,7 +28,7 @@ public class Pessoa implements Serializable{
 	/*
 	 * Método construtor
 	 */
-	public Pessoa(int idPessoa, String nome, String cpf, String email) {
+	public Pessoa(int idPessoa, String nome, String email) {
 		this.idPessoa = idPessoa;
 		this.nome = nome;
 		this.email = email;
@@ -62,5 +62,11 @@ public class Pessoa implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public static int getContadorPessoa() {
+		return contadorPessoa;
+	}
+
+	
 	
 }

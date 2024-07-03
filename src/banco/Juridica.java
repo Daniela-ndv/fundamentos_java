@@ -8,21 +8,24 @@ public class Juridica extends Pessoa{
 
 	private static final long serialVersionUID = 1L;
 	
-	private int cnpj;
+	private String cnpj;
+	
+	/*
+	 * Contrutor com atributos da superclasse 
+	 * @param idPessoa, nome e email da superclasse Pessoa
+	 * @param cnpj da subclasse Juridica
+	 */
+	public Juridica(int idPessoa, String nome, String email, String cnpj) {
+		super(idPessoa, nome, email);
+		this.cnpj = cnpj;
+	}
 
-	public int getCnpj() {
+	public String getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(int cnpj) {
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	
-	public String toString() {
-        return  "\nID: " + this.getIdPessoa() +
-        		"\nName: " + this.getNome() +
-                "\nCNPJ: " + this.getCnpj() +
-                "\nEmail: " + this.getEmail(); 
-    }
 }
 

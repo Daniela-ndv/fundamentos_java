@@ -107,6 +107,7 @@ public class Conta implements Serializable {
 	
     /*
      * Transfere um valor do saldo da conta
+     * @param conta para depósito e valor que será depositado
      */
     public void transferir(Conta contaDeposito, double valor) {
     	if(valor > 0 && valor <= this.getSaldo()) {

@@ -8,27 +8,31 @@ public class Fisica extends Pessoa {
 
 	private static final long serialVersionUID = 1L;
 	
-	private int cpf;
-	private int rg;
+	private String cpf;
+	private String rg;
 	
-	public int getCpf() {
+	/*
+	 * Contrutor com atributos da superclasse 
+	 * @param idPessoa, nome e email da superclasse Pessoa
+	 * @param cpf e rg da subclasse Fisica
+	 */
+	public Fisica(int idPessoa, String nome, String email, String cpf, String rg) {
+		super(idPessoa, nome, email);
+		this.cpf = cpf;
+		this.rg = rg; 
+		
+	}
+	
+	public String getCpf() {
 		return cpf;
 	}
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public int getRg() {
+	public String getRg() {
 		return rg;
 	}
-	public void setRg(int rg) {
+	public void setRg(String rg) {
 		this.rg = rg;
 	}
-	
-	public String toString() {
-        return  "\nID: " + this.getIdPessoa() +
-        		"\nName: " + this.getNome() +
-                "\nCPF: " + this.getCpf() +
-                "\nRG: " + this.getRg() +
-                "\nEmail: " + this.getEmail(); 
-    }
 }

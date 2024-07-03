@@ -15,17 +15,16 @@ public class Menu {
 	
 	public static void operacoes() {
 		
-		System.out.println("================ MENU ================" +
+		System.out.println("\n================ MENU ================" +
 				"\n[1] Criar conta" +
 				"\n[2] Depositar" +
 				"\n[3] Sacar" +
 				"\n[4] Transferir" +
-				"\n[5] Listar" +
-				"\n[6] Sair" );
+				"\n[5] Listar Contas" +
+				"\n[6] Visualizar extrato" +
+				"\n[7] Sair" );
 		
 		int opcao = scanner.nextInt();
-		
-		//System.out.println("Opção: " + opcao);
 		 
 		switch(opcao) {
 			case 1: 
@@ -41,11 +40,13 @@ public class Menu {
 				transferir();
 				break;
 			case 5:
-				listar();
+				listarContas();
 				break;
 			case 6:
+				visualizarExtrato();
+			case 7:
 				System.out.println("Volte sempre!");
-				System.exit(0); // Sair do programa, o break sai do laço switch
+				System.exit(0); // Sair do programa, o break sai apenas do laço switch
 				break; 
 			default: 
 				System.out.println("Opção inválida!");
@@ -56,36 +57,99 @@ public class Menu {
 	}
 	
 	public static void criarConta() {
-				
-		int idPessoa = 0;
+
+		int idPessoa = 1; 
+		
+		if(Pessoa.getContadorPessoa() > 1) {
+			idPessoa += 1; 
+		} 
+		
+		System.out.println("Informa o titpo de titular da conta: ");
+		System.out.println("[1] Pessoa Física");
+		System.out.println("[2] Pessoa Jurídica");
+		System.out.println("[3] Retornar ao menu");
+		int opcaoPessoa = scanner.nextInt();
 		
 		scanner.nextLine();  // Limpa o buffer
 		
-		System.out.println("\nNome: ");
-		String nome = scanner.nextLine();
-		
-		System.out.println("\nCPF: ");
-		String cpf = scanner.nextLine();
-		
-		System.out.println("\nE-mail: ");
-		String email = scanner.nextLine();
-		
-		System.out.println("\nNúmero da conta: ");
-		int numeroConta = scanner.nextInt();
-		
-		System.out.println("\nAgência: ");
-		int agencia = scanner.nextInt();
-		
-		Pessoa pessoa = new Pessoa(idPessoa, nome, cpf, email);
-		
-		Conta conta = new Conta(pessoa, numeroConta, agencia); 
-		
-		contas.add(conta); 
-		
-		System.out.println("Conta criada com sucesso!");
+		if (opcaoPessoa == 1) {
+			System.out.println("### Conta para Pessoa Física ###");
+
+			System.out.println("\nNome: ");
+			String nome = scanner.nextLine();
+
+			System.out.println("\nCPF: ");
+			String cpf = scanner.nextLine();
+
+			System.out.println("\nRG: ");
+			String rg = scanner.nextLine();
+
+			System.out.println("\nE-mail: ");
+			String email = scanner.nextLine();
+			
+			System.out.println("\nAgência: ");
+			int agencia = scanner.nextInt();
+
+			System.out.println("\nNúmero da conta: ");
+			int numeroConta = scanner.nextInt();
+
+			Fisica pessoa = new Fisica(idPessoa, nome, email, cpf, rg);
+
+			Conta conta = new Conta(pessoa, numeroConta, agencia);
+
+			contas.add(conta);
+
+//			System.out.println("\nID: " + pessoa.getIdPessoa());
+//			System.out.println("Nome: " + pessoa.getNome());
+//			System.out.println("CPF: " + pessoa.getCpf());
+//			System.out.println("RG: " + pessoa.getRg());
+//			System.out.println("E-mail: " + pessoa.getEmail());
+//			System.out.println("Agência: " + conta.getAgencia());
+//			System.out.println("Número conta: " + conta.getNumeroConta());
+
+		} else if (opcaoPessoa == 2) {
+			System.out.println("### Conta para Pessoa Jurídica ###");
+			
+			System.out.println("\nNome: ");
+			String nome = scanner.nextLine();
+			
+			System.out.println("\nCNPJ: ");
+			String cnpj = scanner.nextLine();
+			
+			System.out.println("\nE-mail: ");
+			String email = scanner.nextLine();
+			
+			System.out.println("\nAgência: ");
+			int agencia = scanner.nextInt();
+			
+			System.out.println("\nNúmero da conta: ");
+			int numeroConta = scanner.nextInt();
+			
+			Juridica pessoa = new Juridica(idPessoa, nome, email, cnpj);
+			
+			Conta conta = new Conta(pessoa, numeroConta, agencia); 
+			
+			contas.add(conta); 
+			
+//			System.out.println("\nID: " + pessoa.getIdPessoa());
+//			System.out.println("Nome: " + pessoa.getNome());
+//			System.out.println("CNPJ: " + pessoa.getCnpj());
+//			System.out.println("E-mail: " + pessoa.getEmail());
+//			System.out.println("Agência: " + conta.getAgencia());
+//			System.out.println("Número conta: " + conta.getNumeroConta());
+			
+		} else if(opcaoPessoa == 3) {
+			System.out.println("\nRetornando ao menu...\n");
+			operacoes();
+			
+		} else {
+			System.out.println("Tipo de titular inválido! Digite uma opção válida!");
+			criarConta();
+		}
+
+		System.out.println("\n********* Conta criada com sucesso! *********");
 		
 		operacoes();
-
 	}
 	
 	public static Conta encontrarConta(int numero) {
@@ -159,7 +223,7 @@ public class Menu {
 		operacoes();
 	}
 	
-	public static void listar() {
+	public static void listarContas() {
 		if(contas.size() > 0) {
 			for(Conta conta: contas) {
 				System.out.println("\nNúmero conta: " + conta.getNumeroConta());
@@ -171,6 +235,10 @@ public class Menu {
 		}
 		
 		operacoes();
+	}
+	
+	public static void visualizarExtrato() {
+		
 	}
 	
 }
