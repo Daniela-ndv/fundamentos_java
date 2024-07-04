@@ -1,9 +1,5 @@
 package banco;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
-
 /*
  * Classe que lista o histórico de transações
  */
@@ -14,12 +10,14 @@ public class Movimento{
 	private String hora;
 	private double valor;
 	private Conta conta; 
+	private Double saldo;
 	
-	public Movimento(int tipo, String data, String hora, double valor, Conta conta) {
+	public Movimento(int tipo, String data, String hora, double valor, double saldo, Conta conta) {
 		this.tipo = tipo;
 		this.data = data;
 		this.hora = hora;
 		this.valor = valor;
+		this.saldo = saldo; 
 		this.conta = conta; 
 	}
 	
@@ -41,23 +39,22 @@ public class Movimento{
 	public void setHora(String hora) {
 		this.hora = hora;
 	}
-
 	public double getValor() {
 		return valor;
 	}
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-
+	public Double getSaldo() {
+		return saldo;
+	}
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
+	}
 	public Conta getConta() {
 		return conta;
 	}
-
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
-	
-	
-	
-	
 }

@@ -5,7 +5,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Date;
 
 public class Menu {
 	
@@ -16,8 +15,7 @@ public class Menu {
 	public static void main(String[] args) {
 		contas = new ArrayList<Conta>();
 		
-		movimentos = new ArrayList<Movimento>();
-		
+		movimentos = new ArrayList<Movimento>();		
 		operacoes();
 	}
 	
@@ -53,11 +51,11 @@ public class Menu {
 			case 6:
 				visualizarExtrato();
 			case 7:
-				System.out.println("Volte sempre!");
+				System.out.println("=> Volte sempre!");
 				System.exit(0); // Sair do programa, o break sai apenas do laço switch
 				break; 
 			default: 
-				System.out.println("Opção inválida!");
+				System.out.println("\n*** Opção inválida! ***");
 				operacoes();
 				break; 
 		}
@@ -72,7 +70,7 @@ public class Menu {
 			idPessoa += 1; 
 		} 
 		
-		System.out.println("Informa o titpo de titular da conta: ");
+		System.out.println("=> Informa o titpo de titular da conta: ");
 		System.out.println("[1] Pessoa Física");
 		System.out.println("[2] Pessoa Jurídica");
 		System.out.println("[3] Retornar ao menu");
@@ -81,7 +79,7 @@ public class Menu {
 		scanner.nextLine();  // Limpa o buffer
 		
 		if (opcaoPessoa == 1) {
-			System.out.println("### Conta para Pessoa Física ###");
+			System.out.println("\n### Conta para Pessoa Física ###");
 
 			System.out.println("\nNome: ");
 			String nome = scanner.nextLine();
@@ -107,16 +105,8 @@ public class Menu {
 
 			contas.add(conta);
 
-//			System.out.println("\nID: " + pessoa.getIdPessoa());
-//			System.out.println("Nome: " + pessoa.getNome());
-//			System.out.println("CPF: " + pessoa.getCpf());
-//			System.out.println("RG: " + pessoa.getRg());
-//			System.out.println("E-mail: " + pessoa.getEmail());
-//			System.out.println("Agência: " + conta.getAgencia());
-//			System.out.println("Número conta: " + conta.getNumeroConta());
-
 		} else if (opcaoPessoa == 2) {
-			System.out.println("### Conta para Pessoa Jurídica ###");
+			System.out.println("\n### Conta para Pessoa Jurídica ###");
 			
 			System.out.println("\nNome: ");
 			String nome = scanner.nextLine();
@@ -139,19 +129,12 @@ public class Menu {
 			
 			contas.add(conta); 
 			
-//			System.out.println("\nID: " + pessoa.getIdPessoa());
-//			System.out.println("Nome: " + pessoa.getNome());
-//			System.out.println("CNPJ: " + pessoa.getCnpj());
-//			System.out.println("E-mail: " + pessoa.getEmail());
-//			System.out.println("Agência: " + conta.getAgencia());
-//			System.out.println("Número conta: " + conta.getNumeroConta());
-			
 		} else if(opcaoPessoa == 3) {
 			System.out.println("\nRetornando ao menu...");
 			operacoes();
 			
 		} else {
-			System.out.println("Tipo de titular inválido! Digite uma opção válida!");
+			System.out.println("\n*** Tipo de titular inválido! Digite uma opção válida! ***");
 			criarConta();
 		}
 
@@ -187,13 +170,15 @@ public class Menu {
     		String data = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     		String hora = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
     		Double valor = valorDeposito; 
+    		Double saldo = conta.getSaldo(); 
     		
-    		Movimento movimento = new Movimento(tipo, data, hora, valor, conta);    		
-    		movimentos.add(movimento); 
-    		
+    		if(conta.sucesso == true) {
+    			Movimento movimento = new Movimento(tipo, data, hora, valor, saldo, conta);    		
+        		movimentos.add(movimento); 
+    		}	
     		
     	} else {
-    		System.out.println("Conta não encontrada!");
+    		System.out.println("\n*** Conta não encontrada! ***");
     	}
     	
     	operacoes();
@@ -215,12 +200,15 @@ public class Menu {
     		String data = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     		String hora = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
     		Double valor = valorSaque; 
+    		Double saldo = conta.getSaldo(); 
     		
-    		Movimento movimento = new Movimento(tipo, data, hora, valor, conta);    		
-    		movimentos.add(movimento); 
+    		if(conta.sucesso == true) {
+    			Movimento movimento = new Movimento(tipo, data, hora, valor, saldo, conta);    		
+        		movimentos.add(movimento); 
+    		}	
     		
     	} else {
-    		System.out.println("Conta não encontrada!");
+    		System.out.println("\n*** Conta não encontrada! ***");
     	}
     	
     	operacoes();
@@ -245,31 +233,48 @@ public class Menu {
 				
 				contaRemetente.transferir(contaDestinatario, valor);
 				
-				int tipo = 3;
 				String data = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	    		String hora = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+	    		Double saldoRemetente = contaRemetente.getSaldo(); 
+	    		Double saldoDestinatario = contaDestinatario.getSaldo();
 	    		
-	    		Movimento movimento = new Movimento(tipo, data, hora, valor, contaRemetente);    		
-	    		movimentos.add(movimento); 
+	    		if(contaRemetente.sucesso == true) {
+	    			int tipo = 3;
+	    			Movimento movimento = new Movimento(tipo, data, hora, valor, saldoRemetente, contaRemetente);    	
+		    		movimentos.add(movimento); 
+	    		}
+	    		
+	    		if(contaDestinatario.sucesso == true) {		
+	    			int tipo = 4;
+		    		Movimento movimentoTransferido = new Movimento(tipo, data, hora, valor, saldoDestinatario, contaDestinatario); 
+		    		movimentos.add(movimentoTransferido); 
+	    		}
+	    		    		
+	    		
+			} else {
+				System.out.println("\n*** Conta de destinatário não encontrada! ***");
 			}
+		} else {
+			System.out.println("\n*** Conta de remetente não encontrada! ***");
 		}
 		
 		operacoes();
 	}
 	
 	public static void listarContas() {
-			
+				
 		if (contas.size() > 0) {
 			for (Conta conta : contas) {
 				
 				String valorFormatado = String.format("\nSaldo: R$%.3f", conta.getSaldo());
 				
+				System.out.println("\n--------------------------");
 				System.out.println("\nNúmero conta: " + conta.getNumeroConta() + 
 						"\nTitular: " + conta.getPessoa().getNome() + 
 						valorFormatado);
 			}
 		} else {
-			System.out.println("Não há contas cadastradas!");
+			System.out.println("\n*** Não há contas cadastradas! ***");
 		}
 
 		operacoes();
@@ -279,40 +284,47 @@ public class Menu {
 		
 		System.out.println("\nNúmero da conta: ");
 		int numero = scanner.nextInt();
-				
-		if (movimentos.size() > 0) {
-			for (Movimento movimento: movimentos) {
-				
-				String tipoMovimento = ""; 
-				if(movimento.getTipo() == 1) { 
-					tipoMovimento = "Depósito";
-				} else if(movimento.getTipo() == 2) {
-					tipoMovimento = "Saque";
-				} else if(movimento.getTipo() == 3) {
-					tipoMovimento = "Transferir";
-				}
-				
-				if (numero == movimento.getConta().getNumeroConta()) {
-					String valorFormatado = String.format("\nValor: R$%.3f", movimento.getValor());
+		
+		Conta conta = encontrarConta(numero);
+		
+		if(conta != null) {
+			if (movimentos.size() > 0) {
+				for (Movimento movimento: movimentos) {
 					
-					System.out.println("===================================");
-					System.out.println("\nTipo: " + tipoMovimento + 
-							"\nConta: " + movimento.getConta().getNumeroConta() + 
-		    				"\nData: " + movimento.getData() + 
-		    				"\tHora: " + movimento.getHora() + 
-		    				valorFormatado);
-				} else {
-					; 
+					String tipoMovimento = ""; 
+					if(movimento.getTipo() == 1) { 
+						tipoMovimento = "Depósito";
+					} else if(movimento.getTipo() == 2) {
+						tipoMovimento = "Saque";
+					} else if(movimento.getTipo() == 3) {
+						tipoMovimento = "Transferência - Remetente";
+					} else if(movimento.getTipo() == 4) {
+						tipoMovimento = "Transferência - Destinatário";
+					}
+					
+					if (numero == movimento.getConta().getNumeroConta()) {
+						String valorFormatado = String.format("\nValor: R$%.3f", movimento.getValor());
+						String valorAposOp = String.format("\nSaldo após a operação: R$%.3f", movimento.getSaldo());
+						
+						System.out.println("\n--------------------------");
+						System.out.println("Tipo: " + tipoMovimento + 
+								"\nConta: " + movimento.getConta().getNumeroConta() + 
+			    				"\nData: " + movimento.getData() + 
+			    				"\tHora: " + movimento.getHora() + 
+			    				valorFormatado + 
+			    				valorAposOp);					
+					} 
 				}
+			} else {
+				System.out.println("\n*** Não há movimentos! ***");
 			}
 		} else {
-			System.out.println("Não há movimentos!");
+			System.out.println("\n*** Conta não encontrada! ***");
 		}
-		
+				
 		operacoes();
 	}
 	
 }
-
 
 

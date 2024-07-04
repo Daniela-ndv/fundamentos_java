@@ -23,6 +23,7 @@ public class Conta implements Serializable {
     private int numeroConta;
 	private int agencia; 
     private Double saldo = 0.0;
+    public boolean sucesso; 
 
     /*
      * Construtor padrão (algumas APIs Java esperam o construtor padrão)
@@ -83,13 +84,21 @@ public class Conta implements Serializable {
      * Acrescenta valor ao saldo da conta
      * @param valor que será depositado
      */
-    public void depositar(double valor){   	
+    public void depositar(double valor){   
+    	
+    	sucesso = false; 
+    	
     	if (valor > 0) {
     		setSaldo(getSaldo() + valor);
-    		System.out.println("Depósito realizado com sucesso!");
+    		System.out.println("\n********* Depósito realizado com sucesso! *********");
+    		sucesso = true; 
+    		
+    	} else if(valor <= 0) {
+    		System.out.println("\n *** O valor não pode igual ou menor a zero! ***");
+    		
     	} else {
-    		System.out.println("A Operação não foi realizada!");
-    	}	
+    		System.out.println("n*** Erro! Operação não realizada! ***");
+    	}
     }
     
     /*
@@ -97,11 +106,22 @@ public class Conta implements Serializable {
      * @param valor que será retirado
      */
     public void sacar(double valor){
+    	
+    	sucesso = false; 
+    	
     	if(valor > 0 && valor <= this.getSaldo()) {
     		setSaldo(getSaldo() - valor);
-    		System.out.println("Saque realizado com sucesso!");
+    		System.out.println("\n********* Saque realizado com sucesso! *********");
+    		sucesso = true; 
+    		
+    	} else if(valor <= 0) {
+    		System.out.println("\n *** O valor não pode igual ou menor a zero! ***");
+    		
+    	} else if(valor > this.getSaldo()) {
+    		System.out.println("\\n *** Saldo insuficiente! ***");
+    		
     	} else {
-    		System.out.println("A Operação não foi realizada!");
+    		System.out.println("\n ***Erro! Operação não realizada! ***");
     	}
     }
 	
@@ -110,18 +130,26 @@ public class Conta implements Serializable {
      * @param conta para depósito e valor que será depositado
      */
     public void transferir(Conta contaDeposito, double valor) {
+    	
+    	sucesso = false; 
+    	
     	if(valor > 0 && valor <= this.getSaldo()) {
-    		
     		setSaldo(getSaldo() - valor);
     		contaDeposito.setSaldo(contaDeposito.getSaldo() + valor); 
     		
-    		System.out.println("Transferência realizada com sucesso!");
+    		sucesso = true;    		
+    		System.out.println("\n********* Transferência realizada com sucesso! *********");
+    		
+    	} else if(valor <= 0) {
+    		System.out.println("\n*** O valor não pode igual ou menor a zero! ***");
+    		
+    	} else if(valor > this.getSaldo()) {
+    		System.out.println("\n*** Saldo insuficiente! ");
+    		
     	} else {
-    		System.out.println("A Operação não foi realizada!");
+    		System.out.println("\n*** Erro! Operação não realizada! ***");
     	}
     }
-    
-    
     
 }
 
