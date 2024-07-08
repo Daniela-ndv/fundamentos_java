@@ -1,5 +1,7 @@
 package banco;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Scanner;
 
@@ -117,7 +119,7 @@ public class Conta implements Serializable {
     		System.out.println("\n *** O valor não pode igual ou menor a zero! ***");
     		
     	} else if(valor > this.getSaldo()) {
-    		System.out.println("\\n *** Saldo insuficiente! ***");
+    		System.out.println("\n *** Saldo insuficiente! ***");
     		
     	} else {
     		System.out.println("\n ***Erro! Operação não realizada! ***");
@@ -148,7 +150,7 @@ public class Conta implements Serializable {
     	} else {
     		System.out.println("\n*** Erro! Operação não realizada! ***");
     	}
-    }
+    }   
     
 }
 

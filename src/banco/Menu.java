@@ -1,9 +1,16 @@
 package banco;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -16,10 +23,15 @@ public class Menu {
 	static ArrayList<Conta> contas; 
 	static ArrayList<Movimento> movimentos; 
 	
+	static String nomeArquivo = "contas.csv";
+	static String diretorio = System.getProperty("user.dir");
+	static String caminho = diretorio + "\\src\\banco" + "\\" + nomeArquivo;
+	
 	public static void main(String[] args) {
 		contas = new ArrayList<Conta>();
 		
-		movimentos = new ArrayList<Movimento>();		
+		movimentos = new ArrayList<Movimento>();	
+				
 		operacoes();
 	}
 	
@@ -179,6 +191,7 @@ public class Menu {
     		if(conta.sucesso == true) {
     			Movimento movimento = new Movimento(tipo, data, hora, valor, saldo, conta);    		
         		movimentos.add(movimento); 
+        		gravarEstoque(nomeArquivo, caminho, movimentos);
     		}	
     		
     	} else {
@@ -209,6 +222,7 @@ public class Menu {
     		if(conta.sucesso == true) {
     			Movimento movimento = new Movimento(tipo, data, hora, valor, saldo, conta);    		
         		movimentos.add(movimento); 
+        		gravarEstoque(nomeArquivo, caminho, movimentos);
     		}	
     		
     	} else {
@@ -246,15 +260,16 @@ public class Menu {
 	    			int tipo = 3;
 	    			Movimento movimento = new Movimento(tipo, data, hora, valor, saldoRemetente, contaRemetente);    	
 		    		movimentos.add(movimento); 
+		    		gravarEstoque(nomeArquivo, caminho, movimentos);
 	    		}
 	    		
 	    		if(contaDestinatario.sucesso == true) {		
 	    			int tipo = 4;
 		    		Movimento movimentoTransferido = new Movimento(tipo, data, hora, valor, saldoDestinatario, contaDestinatario); 
 		    		movimentos.add(movimentoTransferido); 
+		    		gravarEstoque(nomeArquivo, caminho, movimentos);
 	    		}
-	    		    		
-	    		
+	    		   
 			} else {
 				System.out.println("\n*** Conta de destinatário não encontrada! ***");
 			}
@@ -316,7 +331,7 @@ public class Menu {
 			    				"\nData: " + movimento.getData() + 
 			    				"\tHora: " + movimento.getHora() + 
 			    				valorFormatado + 
-			    				valorAposOp);					
+			    				valorAposOp);		
 					} 
 				}
 			} else {
@@ -327,6 +342,77 @@ public class Menu {
 		}
 				
 		operacoes();
+	}
+		
+	public static void gravarEstoque(String nomeArquivo, String caminho, ArrayList<Movimento> movimentos) {
+		
+		File arquivo = new File(caminho);
+
+		if (!arquivo.exists()) {
+			// Cria o arquivo
+			try {
+				arquivo.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+				
+		File fDiretorio = new File(diretorio);
+		
+		if (!fDiretorio.exists()) {
+			// Cria o diretório
+			try {
+				fDiretorio.mkdir();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}	
+		
+		/*
+		 * Verifica se o arquivo tem conteúdo
+		 */
+	
+		
+		
+		FileWriter stream;
+		PrintWriter print; 
+		
+		try {
+			stream = new FileWriter(caminho);
+			// Escreve no arquivo 
+			print = new PrintWriter(stream);
+			
+			FileReader content = new FileReader(caminho);
+			BufferedReader reader = new BufferedReader(content);
+			String linha = reader.readLine();
+						
+			if(linha == null) {
+				print.println("Tipo Transação;Número Conta;Data;Hora;Valor da transação; Saldo;");
+				
+			} 
+			
+			if(contas.size() > 0) {
+				for (Movimento movimento : movimentos) {
+						
+					String registro = movimento.getTipo() + ";" + movimento.getConta().getNumeroConta() + ";"
+									+ movimento.getData() + ";" + movimento.getHora() + ";" + movimento.getValor() + ";"
+									+ movimento.getSaldo() + ";";
+
+					print.println(registro);
+				}
+			}
+			
+			reader.close(); 
+			print.close();
+			stream.close();
+			
+		} catch(IOException e) {
+			
+			e.printStackTrace();
+		}
+
+
+		
 	}
 	
 }
