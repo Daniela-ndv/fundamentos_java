@@ -6,6 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe principal que invoca os métodos e salva os parâmetros
+ */
+
 public class Menu {
 	
 	static Scanner scanner = new Scanner(System.in); 

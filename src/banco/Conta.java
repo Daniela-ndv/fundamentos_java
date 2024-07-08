@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 /**
  * Classe que abstrai uma conta bancária
- * Padrão JavaBean
  * @author Daniela Dalla Vecchia
  * @version 1.0
  */
