@@ -6,11 +6,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -368,17 +368,13 @@ public class Menu {
 			}
 		}	
 		
-		/*
-		 * Verifica se o arquivo tem conteúdo
-		 */
-	
-		
-		
 		FileWriter stream;
 		PrintWriter print; 
 		
 		try {
-			stream = new FileWriter(caminho);
+			// Se append = true, escreve ao final do arquivo
+			//stream = new FileWriter(caminho, StandardCharsets.ISO_8859_1, true);  //fileName, charset, append 
+			stream = new FileWriter(caminho, StandardCharsets.ISO_8859_1); 
 			// Escreve no arquivo 
 			print = new PrintWriter(stream);
 			
@@ -409,12 +405,8 @@ public class Menu {
 		} catch(IOException e) {
 			
 			e.printStackTrace();
-		}
-
-
-		
+		} 
 	}
 	
 }
-
 
