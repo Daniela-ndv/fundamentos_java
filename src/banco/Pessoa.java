@@ -2,19 +2,14 @@ package banco;
 
 import java.io.Serializable;
 
-import utilitarios.Utils;
-
 /**
  * Classe que abstrai um usuário da conta
  */
 
 //Classe serializável: objetos gerados a partir da classe terão as informações serializáveis, transformadas em pacotes de bits para trafegar na rede
+
 public class Pessoa implements Serializable{
 
-    /**
-	 * serialVersionUID: para identificação dos objetos de modo a evitar conflito no ambiente de memória
-	 * Controle de versão
-	 */
 	private static final long serialVersionUID = 1L; 
 	
 	private static int contadorPessoa = 1; 

@@ -1,7 +1,7 @@
 package banco;
 
 /**
- * Classe que lista o histórico de transações
+ * Classe que recebe o histórico de transações
  */
 public class Movimento{
 		

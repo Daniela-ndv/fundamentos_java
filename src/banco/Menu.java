@@ -27,14 +27,21 @@ public class Menu {
 	static String diretorio = System.getProperty("user.dir");
 	static String caminho = diretorio + "\\src\\banco" + "\\" + nomeArquivo;
 	
+	/**
+	 * Método main
+	 */
 	public static void main(String[] args) {
-		contas = new ArrayList<Conta>();
 		
+		contas = new ArrayList<Conta>();
 		movimentos = new ArrayList<Movimento>();	
 				
 		operacoes();
+		
 	}
 	
+	/**
+	 * Método com o menu de opções e chamamento dos métodos das operações da conta
+	 */
 	public static void operacoes() {
 		
 		System.out.println("\n================ MENU ================" +
@@ -78,6 +85,9 @@ public class Menu {
 		
 	}
 	
+	/**
+	 * Método para criar uma conta nova para pesoa física ou jurídica
+	 */
 	public static void criarConta() {
 
 		int idPessoa = 1; 
@@ -159,6 +169,11 @@ public class Menu {
 		operacoes();
 	}
 	
+	/**
+	 * Método que localiza se a conta existe no Array de contas
+	 * @param numero da conta para encontrar 
+	 * @return número da conta ou null se a conta não existir
+	 */
 	public static Conta encontrarConta(int numero) {
 		Conta conta = null;
 		if(contas.size() > 0) {
@@ -171,6 +186,9 @@ public class Menu {
 		return conta;
 	} 
 	
+	/**
+	 * Método para depositar 
+	 */
     public static void depositar(){
     	System.out.println("Número da conta: ");
     	int numero = scanner.nextInt();
@@ -202,6 +220,9 @@ public class Menu {
     	
     }
 	
+    /**
+     * Método para sacar 
+     */
     public static void sacar() {
     	System.out.println("Número da conta: ");
     	int numero = scanner.nextInt();
@@ -233,6 +254,9 @@ public class Menu {
     	
 	}
 
+    /**
+     * Método para transferir 
+     */
 	public static void transferir() {
 		System.out.println("Número conta remetente: ");
 		int numeroContaRemetente = scanner.nextInt();
@@ -280,6 +304,9 @@ public class Menu {
 		operacoes();
 	}
 	
+	/**
+	 * Método para listar o Array de contas 
+	 */
 	public static void listarContas() {
 				
 		if (contas.size() > 0) {
@@ -299,6 +326,9 @@ public class Menu {
 		operacoes();
 	}
 	
+	/**
+	 * Método para visualizar os movimentos de uma conta 
+	 */
 	public static void visualizarExtrato() {
 		
 		System.out.println("\nNúmero da conta: ");
@@ -343,13 +373,19 @@ public class Menu {
 				
 		operacoes();
 	}
-		
+	
+	/**
+	 * Método para salvar os movimentos em um arquivo .csv
+	 * @param nomeArquivo nome do arquivo que será gravado
+	 * @param caminho diretório em que o arquivo se encontra
+	 * @param movimentos Array que armazena os movimentos das contas (transações)
+	 */
 	public static void gravarEstoque(String nomeArquivo, String caminho, ArrayList<Movimento> movimentos) {
 		
 		File arquivo = new File(caminho);
 
 		if (!arquivo.exists()) {
-			// Cria o arquivo
+			// Se não existe, cria o arquivo
 			try {
 				arquivo.createNewFile();
 			} catch (IOException e) {
@@ -360,7 +396,7 @@ public class Menu {
 		File fDiretorio = new File(diretorio);
 		
 		if (!fDiretorio.exists()) {
-			// Cria o diretório
+			// Se não existe, cria o diretório
 			try {
 				fDiretorio.mkdir();
 			} catch (Exception e) {
@@ -372,8 +408,6 @@ public class Menu {
 		PrintWriter print; 
 		
 		try {
-			// Se append = true, escreve ao final do arquivo
-			//stream = new FileWriter(caminho, StandardCharsets.ISO_8859_1, true);  //fileName, charset, append 
 			stream = new FileWriter(caminho, StandardCharsets.ISO_8859_1); 
 			// Escreve no arquivo 
 			print = new PrintWriter(stream);

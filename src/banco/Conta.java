@@ -1,9 +1,6 @@
 package banco;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.Scanner;
 
 /**
  * Classe que abstrai uma conta bancária
@@ -14,12 +11,12 @@ import java.util.Scanner;
 // Classe serializável: objetos gerados a partir da classe terão as informações serializáveis, transformadas em pacotes de bits para trafegar na rede
 public class Conta implements Serializable {
 
-    /**
-	 * Controle de versão de uma serializável
+    /*
+	 * Controle de versão de uma serializável - default UID
+	 * Para identificação dos objetos de modo a evitar conflito no ambiente de memória
 	 */
 	private static final long serialVersionUID = 1L; 
 	
-	private static int contadorContas = 1; 
     private Pessoa pessoa; 
     private int numeroConta;
 	private int agencia; 
@@ -39,7 +36,6 @@ public class Conta implements Serializable {
 		this.agencia = agencia;
         this.pessoa = pessoa;
         this.updateSaldo(); 
-        Conta.contadorContas += 1;
     }
 
     /*

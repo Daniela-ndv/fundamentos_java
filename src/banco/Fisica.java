@@ -12,7 +12,7 @@ public class Fisica extends Pessoa {
 	private String rg;
 	
 	/*
-	 * Contrutor com atributos da superclasse 
+	 * Construtor com atributos da superclasse 
 	 * @param idPessoa, nome e email da superclasse Pessoa
 	 * @param cpf e rg da subclasse Fisica
 	 */
@@ -20,7 +20,6 @@ public class Fisica extends Pessoa {
 		super(idPessoa, nome, email);
 		this.cpf = cpf;
 		this.rg = rg; 
-		
 	}
 	
 	public String getCpf() {
